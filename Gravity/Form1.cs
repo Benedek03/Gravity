@@ -5,13 +5,14 @@ using static System.Windows.Forms.DataFormats;
 
 namespace Gravity {
     public partial class Form1 : Form {
-        bool isRunning = false;
-        int steps = 0;
-        List<Planet> planets = new List<Planet>();
-        Bitmap bmp;
-        Graphics graphics;
-        Point mousePos = new Point(0, 0);
-        SolidBrush defaultBrush = new SolidBrush(Color.Red);
+        private bool isRunning = false;
+        private bool pictureBoxClicked = true;
+        private int steps = 0;
+        private List<Planet> planets = new List<Planet>();
+        private Bitmap bmp;
+        private Graphics graphics;
+        private Point mousePos = new Point(0, 0);
+        private SolidBrush defaultBrush = new SolidBrush(Color.Red);
 
         public Form1() {
             InitializeComponent();
@@ -71,8 +72,6 @@ namespace Gravity {
 
         //step
         private void button3_Click(object sender, EventArgs e) => Step();
-
-        bool pictureBoxClicked = true;
 
         //new planet
         private void button4_Click(object sender, EventArgs e) {
