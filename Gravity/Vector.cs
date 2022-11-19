@@ -12,6 +12,10 @@ namespace Gravity {
             this.x = x;
             this.y = y;
         }
+        public Vector(Point p) { 
+            this.x = p.X;
+            this.y = p.Y;
+        }
 
         public double Length() => Math.Sqrt(x * x + y * y);
 

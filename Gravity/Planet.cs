@@ -8,8 +8,8 @@ namespace Gravity {
     internal class Planet {
         public Vector position;
         public Vector velocity;
-        public int size;
         public int mass;
+        public int size;
         public SolidBrush solidBrush;
         public Planet(Vector position, Vector velocity, int mass, int size, SolidBrush solidBrush) {
             this.position = position;
