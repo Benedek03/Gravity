@@ -35,11 +35,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,18 +113,9 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 181);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "velocity (separated with \';\')";
-            this.textBox1.Size = new System.Drawing.Size(163, 23);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Visible = false;
-            // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 210);
+            this.textBox2.Location = new System.Drawing.Point(12, 196);
             this.textBox2.Name = "textBox2";
             this.textBox2.PlaceholderText = "mass";
             this.textBox2.Size = new System.Drawing.Size(163, 23);
@@ -133,7 +124,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 239);
+            this.textBox3.Location = new System.Drawing.Point(12, 225);
             this.textBox3.Name = "textBox3";
             this.textBox3.PlaceholderText = "size";
             this.textBox3.Size = new System.Drawing.Size(163, 23);
@@ -142,7 +133,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 297);
+            this.button5.Location = new System.Drawing.Point(12, 283);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(163, 23);
             this.button5.TabIndex = 10;
@@ -154,11 +145,20 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 268);
+            this.comboBox1.Location = new System.Drawing.Point(12, 254);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(163, 23);
             this.comboBox1.TabIndex = 11;
             this.comboBox1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(12, 178);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 15);
+            this.label3.TabIndex = 12;
             // 
             // Form1
             // 
@@ -166,11 +166,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
@@ -195,10 +195,10 @@
         private Button button3;
         private Label label2;
         private Button button4;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private Button button5;
         private ComboBox comboBox1;
+        private Label label3;
     }
 }

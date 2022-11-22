@@ -7,12 +7,16 @@ namespace Gravity {
     public partial class Form1 : Form {
         private bool isRunning = false;
         private bool pictureBoxClicked = true;
+        private int pictureBoxClicks = 0;
         private int steps = 0;
         private List<Planet> planets = new List<Planet>();
         private Bitmap bmp;
         private Graphics graphics;
         private Point mousePos = new Point(0, 0);
+        private Point newPlanetPos = new Point(0, 0);
+        private Vector newPlanetVel = new Vector(0,0);
         private SolidBrush defaultBrush = new SolidBrush(Color.Red);
+        private Pen defaultPen = new Pen(Color.Red);
 
         public Form1() {
             InitializeComponent();
@@ -76,52 +80,38 @@ namespace Gravity {
         //new planet
         private void button4_Click(object sender, EventArgs e) {
             isRunning = false;
-            pictureBoxClicked = false;
-            while (!pictureBoxClicked) {
+            pictureBoxClicks = 0;
+            while (pictureBoxClicks == 0) {
+                newPlanetPos = mousePos;
                 VisualUpdate();
+                label2.Text = mousePos.X.ToString() + ";" + mousePos.Y.ToString();
                 graphics.FillEllipse(defaultBrush, mousePos.X - 10 / 2, mousePos.Y - 10 / 2, 10, 10);
                 pictureBox1.Refresh();
                 Application.DoEvents();
                 Thread.Sleep(10);
             }
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e) {
-            if (!pictureBoxClicked) {
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                comboBox1.Visible = true;
-                button5.Visible = true;
+            while (pictureBoxClicks == 1) {
+                newPlanetVel = new Vector(((mousePos.X - newPlanetPos.X) / 10), ((mousePos.Y - newPlanetPos.Y) / 10));
+                VisualUpdate();
+                label3.Text = newPlanetVel.x.ToString() + ";" + newPlanetVel.y.ToString();
+                graphics.DrawLine(defaultPen, newPlanetPos, mousePos);
+                pictureBox1.Refresh();
+                Application.DoEvents();
+                Thread.Sleep(10);
             }
-            pictureBoxClicked = true;
+            textBox2.Visible = true;
+            textBox3.Visible = true;
+            comboBox1.Visible = true;
+            button5.Visible = true;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e) { pictureBoxClicks++; }
 
         //upedate mousePos when the mouse is moved
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
-            if (!pictureBoxClicked) {
-                mousePos = e.Location;
-                label2.Text = mousePos.X.ToString() + ";" + mousePos.Y.ToString();
-            }
-        }
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) { mousePos = e.Location; }
 
         //create nem planet
         private void button5_Click(object sender, EventArgs e) {
-            Vector pos = new Vector(mousePos);
-
-            int vx = 0, vy = 0;
-            try {
-                string[] numbers = textBox1.Text.Split(';');
-                if (numbers.Length != 2) throw new Exception("this isnt 2 numbers");
-                vx = int.Parse(numbers[0]);
-                vy = int.Parse(numbers[1]);
-            } catch {
-                MessageBox.Show("velocity must be 2 numbers separated with a ';'");
-                return;
-            }
-            Vector vel = new Vector(vx, vy);
-
             int mass = 0;
             try {
                 mass = int.Parse(textBox2.Text);
@@ -150,14 +140,14 @@ namespace Gravity {
                 return;
             }
 
-            planets.Add(new Planet(pos, vel, mass, size, new SolidBrush(color)));
+            planets.Add(new Planet(new Vector(newPlanetPos), newPlanetVel, mass, size, new SolidBrush(color)));
 
-            textBox1.Visible = false;
             textBox2.Visible = false;
             textBox3.Visible = false;
             comboBox1.Visible = false;
             button5.Visible = false;
             label2.Text = "";
+            label3.Text = "";
 
             VisualUpdate();
         }
