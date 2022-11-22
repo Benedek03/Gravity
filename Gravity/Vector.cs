@@ -19,6 +19,8 @@ namespace Gravity {
 
         public double Length() => Math.Sqrt(x * x + y * y);
 
+        public static implicit operator Point(Vector a) => new Point((int)Math.Round(a.x), (int)Math.Round(a.y));
+
         public static Vector operator +(Vector a, Vector b) => new Vector(a.x + b.x, a.y + b.y);
         public static Vector operator -(Vector a, Vector b) => new Vector(a.x - b.x, a.y - b.y);
         public static Vector operator /(Vector a, double d) => new Vector(a.x / d, a.y / d);
